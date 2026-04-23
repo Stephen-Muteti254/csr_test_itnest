@@ -22,26 +22,26 @@ export function AssessmentSectionC({ answers, setAnswers }: Props) {
           <span className="text-xs text-muted-foreground">{answeredCount}/5 answered</span>
         </div>
         <h2 className="text-xl font-bold text-foreground">Written Responses</h2>
-        <p className="text-sm text-muted-foreground">Provide thoughtful, well-structured written answers.</p>
+        {/*<p className="text-sm text-muted-foreground">Provide thoughtful, well-structured written answers.</p>*/}
       </div>
 
       {sectionCQuestions.map((q) => (
-        <Card key={q.id}>
+        <Card key={q.id} className="shadow-none !shadow-none border-0">
           <CardHeader className="pb-3">
             <CardTitle className="text-sm font-semibold leading-relaxed">
               <span className="text-muted-foreground mr-2">Q{q.id}.</span>
               {q.question}
             </CardTitle>
-            {q.task && (
+            {/*{q.task && (
               <p className="text-xs text-primary font-medium mt-1">Task: {q.task}</p>
-            )}
+            )}*/}
           </CardHeader>
           <CardContent className="space-y-3">
-            <div className="flex flex-wrap gap-1.5">
+            {/*<div className="flex flex-wrap gap-1.5">
               {q.expectedPoints.map((point) => (
                 <Badge key={point} variant="secondary" className="text-[10px]">{point}</Badge>
               ))}
-            </div>
+            </div>*/}
             <textarea
               value={answers[q.id] || ""}
               onChange={(e) => handleChange(q.id, e.target.value)}

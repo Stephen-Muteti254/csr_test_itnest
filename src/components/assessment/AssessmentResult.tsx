@@ -18,6 +18,7 @@ export function AssessmentResult({ candidateName, candidateEmail }: AssessmentRe
   const score = useMemo(() => Math.floor(Math.random() * (70 - 55 + 1)) + 55, []);
   const ranking = getRanking(score);
   const [apiStatus, setApiStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [apiError, setApiError] = useState<string | null>(null);
 
   useEffect(() => {
     const submitScore = async () => {
@@ -32,6 +33,7 @@ export function AssessmentResult({ candidateName, candidateEmail }: AssessmentRe
         setApiStatus("success");
       } catch {
         setApiStatus("error");
+        setApiError(err?.response?.data?.message || "Something went wrong");
       }
     };
     submitScore();
@@ -42,7 +44,7 @@ export function AssessmentResult({ candidateName, candidateEmail }: AssessmentRe
       <Card>
         <CardHeader className="text-center pb-4">
           <CardTitle className="text-2xl">Assessment Complete</CardTitle>
-          <p className="text-sm text-muted-foreground">Thank you for completing the Senior CSR Online Assessment.</p>
+          <p className="text-sm text-muted-foreground">Thank you for completing the CSR Online Assessment.</p>
         </CardHeader>
         <CardContent className="space-y-6">
           {/* Score */}
@@ -79,11 +81,33 @@ export function AssessmentResult({ candidateName, candidateEmail }: AssessmentRe
           </div>
 
           {/* API Status */}
-          <div className="text-center text-xs text-muted-foreground">
-            {apiStatus === "loading" && "Saving your results..."}
-            {apiStatus === "success" && "✓ Results saved successfully."}
-            {apiStatus === "error" && "⚠ Could not save results. Please contact support."}
-          </div>
+          {apiStatus === "loading" && (
+            <div className="rounded-lg border border-blue-500/30 bg-blue-500/5 p-4 text-center">
+              <p className="text-sm text-blue-600 font-medium">Saving your results...</p>
+            </div>
+          )}
+
+          {apiStatus === "loading" && (
+            <div className="absolute inset-0 bg-white/60 backdrop-blur-sm flex items-center justify-center rounded-lg">
+              <div className="animate-spin h-8 w-8 border-4 border-primary border-t-transparent rounded-full" />
+            </div>
+          )}
+
+          {apiStatus === "success" && (
+            <div className="rounded-lg border border-emerald-500/30 bg-emerald-500/5 p-4 text-center">
+              <p className="text-sm text-emerald-600 font-medium">
+                Results saved successfully
+              </p>
+            </div>
+          )}
+
+          {apiStatus === "error" && (
+            <div className="rounded-lg border border-red-500/30 bg-red-500/5 p-4 text-center">
+              <p className="text-sm text-red-600 font-medium">
+                {apiError}
+              </p>
+            </div>
+          )}
 
           <div className="rounded-lg border bg-muted/30 p-4 text-center">
             <p className="text-sm text-muted-foreground">

@@ -22,11 +22,11 @@ export function AssessmentSectionD({ answers, setAnswers }: Props) {
           <span className="text-xs text-muted-foreground">{answeredCount}/2 answered</span>
         </div>
         <h2 className="text-xl font-bold text-foreground">Analytical & Prioritization</h2>
-        <p className="text-sm text-muted-foreground">Demonstrate elite-level analytical thinking and prioritization skills.</p>
+        {/*<p className="text-sm text-muted-foreground">Demonstrate elite-level analytical thinking and prioritization skills.</p>*/}
       </div>
 
       {sectionDQuestions.map((q) => (
-        <Card key={q.id}>
+        <Card key={q.id} className="shadow-none !shadow-none border-0">
           <CardHeader className="pb-3">
             <CardTitle className="text-sm font-semibold leading-relaxed">
               <span className="text-muted-foreground mr-2">Q{q.id}.</span>

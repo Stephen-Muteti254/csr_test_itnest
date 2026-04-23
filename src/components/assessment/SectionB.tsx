@@ -20,11 +20,11 @@ export function AssessmentSectionB({ answers, setAnswers }: Props) {
           <span className="text-xs text-muted-foreground">{Object.keys(answers).length}/8 answered</span>
         </div>
         <h2 className="text-xl font-bold text-foreground">Scenario-Based MCQs</h2>
-        <p className="text-sm text-muted-foreground">Choose the best course of action for each scenario.</p>
+        {/*<p className="text-sm text-muted-foreground">Choose the best course of action for each scenario.</p>*/}
       </div>
 
       {sectionBQuestions.map((q) => (
-        <Card key={q.id} className={answers[q.id] ? "border-primary/30" : ""}>
+        <Card key={q.id} className={`${answers[q.id] ? "border-primary/30" : ""} shadow-none !shadow-none border-0`}>
           <CardHeader className="pb-3">
             <CardTitle className="text-sm font-semibold leading-relaxed">
               <span className="text-muted-foreground mr-2">Q{q.id}.</span>
