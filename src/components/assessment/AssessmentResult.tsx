@@ -82,7 +82,7 @@ export function AssessmentResult({ candidateName, candidateEmail }: AssessmentRe
           <div className="text-center text-xs text-muted-foreground">
             {apiStatus === "loading" && "Saving your results..."}
             {apiStatus === "success" && "✓ Results saved successfully."}
-            {apiStatus === "error" && "Could not save results. Please contact support."}
+            {apiStatus === "error" && "⚠ Could not save results. Please contact support."}
           </div>
 
           <div className="rounded-lg border bg-muted/30 p-4 text-center">
