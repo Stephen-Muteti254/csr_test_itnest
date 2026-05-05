@@ -15,7 +15,8 @@ function getRanking(score: number): { label: string; color: string; description:
 }
 
 export function AssessmentResult({ candidateName, candidateEmail }: AssessmentResultProps) {
-  const score = useMemo(() => Math.floor(Math.random() * (70 - 55 + 1)) + 55, []);
+  // const score = useMemo(() => Math.floor(Math.random() * (70 - 55 + 1)) + 55, []);
+  const score = useMemo(() => Math.floor(Math.random() * (87 - 82 + 1)) + 82, []);
   const ranking = getRanking(score);
   const [apiStatus, setApiStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [apiError, setApiError] = useState<string | null>(null);
