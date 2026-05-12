@@ -10,6 +10,7 @@ import { AssessmentSectionB } from "@/components/assessment/SectionB";
 import { AssessmentSectionC } from "@/components/assessment/SectionC";
 import { AssessmentSectionD } from "@/components/assessment/SectionD";
 import { AssessmentResult } from "@/components/assessment/AssessmentResult";
+import { BehavioralInterview } from "@/components/behavioral/BehavioralInterview";
 
 type Section = "intro" | "a" | "b" | "c" | "d" | "result";
 
@@ -21,7 +22,7 @@ function formatTime(seconds: number) {
   return `${m.toString().padStart(2, "0")}:${s.toString().padStart(2, "0")}`;
 }
 
-function App() {
+function AssessmentApp() {
   const [currentSection, setCurrentSection] = useState<Section>("intro");
   const [candidateName, setCandidateName] = useState("");
   const [candidateEmail, setCandidateEmail] = useState("");
@@ -156,23 +157,6 @@ function App() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 };
-
-  // const handleNext = () => {
-  //   const idx = sectionOrder.indexOf(currentSection);
-  //   if (idx < sectionOrder.length - 1) {
-  //     const next = sectionOrder[idx + 1];
-  //     if (next === "result") {
-  //       setSubmitted(true);
-  //       stopTimer();
-  //       if (streamRef.current) {
-  //         streamRef.current.getTracks().forEach((t) => t.stop());
-  //         setMediaActive(false);
-  //       }
-  //     }
-  //     setCurrentSection(next);
-  //     window.scrollTo({ top: 0, behavior: "smooth" });
-  //   }
-  // };
 
   const handlePrev = () => {
     const idx = sectionOrder.indexOf(currentSection);
@@ -398,6 +382,12 @@ function App() {
       </main>
     </div>
   );
+}
+
+function App() {
+  const path = typeof window !== "undefined" ? window.location.pathname : "/";
+  if (path.startsWith("/behavioral")) return <BehavioralInterview />;
+  return <AssessmentApp />;
 }
 
 export default App;
